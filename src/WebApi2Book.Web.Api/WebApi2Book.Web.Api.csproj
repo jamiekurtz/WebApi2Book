@@ -138,7 +138,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InquiryProcessing\AllTasksInquiryProcessor.cs" />
+    <Compile Include="InquiryProcessing\IAllTasksInquiryProcessor.cs" />
+    <Compile Include="InquiryProcessing\IPagedDataRequestFactory.cs" />
     <Compile Include="InquiryProcessing\ITaskByIdInquiryProcessor.cs" />
+    <Compile Include="InquiryProcessing\PagedDataRequestFactory.cs" />
     <Compile Include="InquiryProcessing\TaskByIdInquiryProcessor.cs" />
     <Compile Include="MaintenanceProcessing\AddTaskMaintenanceProcessor.cs" />
     <Compile Include="MaintenanceProcessing\CompleteTaskWorkflowProcessor.cs" />
@@ -159,6 +163,7 @@
     <Compile Include="Security\BasicAuthenticationMessageHandler.cs" />
     <Compile Include="Security\BasicSecurityService.cs" />
     <Compile Include="Security\IBasicSecurityService.cs" />
+    <Compile Include="Security\PagedTaskDataSecurityMessageHandler.cs" />
     <Compile Include="Security\TaskDataSecurityMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
