@@ -144,6 +144,12 @@
     <Compile Include="InquiryProcessing\ITaskByIdInquiryProcessor.cs" />
     <Compile Include="InquiryProcessing\PagedDataRequestFactory.cs" />
     <Compile Include="InquiryProcessing\TaskByIdInquiryProcessor.cs" />
+    <Compile Include="LinkServices\CommonLinkService.cs" />
+    <Compile Include="LinkServices\ICommonLinkService.cs" />
+    <Compile Include="LinkServices\ITaskLinkService.cs" />
+    <Compile Include="LinkServices\IUserLinkService.cs" />
+    <Compile Include="LinkServices\TaskLinkService.cs" />
+    <Compile Include="LinkServices\UserLinkService.cs" />
     <Compile Include="MaintenanceProcessing\AddTaskMaintenanceProcessor.cs" />
     <Compile Include="MaintenanceProcessing\CompleteTaskWorkflowProcessor.cs" />
     <Compile Include="MaintenanceProcessing\IAddTaskMaintenanceProcessor.cs" />
