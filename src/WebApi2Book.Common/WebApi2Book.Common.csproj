@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="DateTimeAdapter.cs" />
     <Compile Include="IDateTime.cs" />
     <Compile Include="Logging\ILogManager.cs" />

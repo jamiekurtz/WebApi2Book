@@ -20,10 +20,11 @@ namespace WebApi2Book.Web.Api.Controllers.V1
 
         [Route("", Name = "AddTaskRoute")]
         [HttpPost]
-        public Task AddTask(HttpRequestMessage requestMessage, NewTask newTask)
+        public IHttpActionResult AddTask(HttpRequestMessage requestMessage, NewTask newTask)
         {
             var task = _addTaskMaintenanceProcessor.AddTask(newTask);
-            return task;
+            var result = new TaskCreatedActionResult(requestMessage, task);
+            return result;
         }
     }
 }
