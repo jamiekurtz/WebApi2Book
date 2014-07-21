@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryProcessors\AddTaskQueryProcessor.cs" />
     <Compile Include="QueryProcessors\TaskByIdQueryProcessor.cs" />
+    <Compile Include="QueryProcessors\UpdateTaskQueryProcessor.cs" />
     <Compile Include="QueryProcessors\UpdateTaskStatusQueryProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
