@@ -46,6 +46,7 @@
     <Compile Include="Exceptions\ChildObjectNotFoundException.cs" />
     <Compile Include="Exceptions\RootObjectNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryProcessors\IAddTaskQueryProcessor.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

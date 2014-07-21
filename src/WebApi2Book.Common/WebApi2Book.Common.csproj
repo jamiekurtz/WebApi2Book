@@ -53,6 +53,10 @@
     <Compile Include="Logging\ILogManager.cs" />
     <Compile Include="Logging\LogManagerAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\IUserSession.cs" />
+    <Compile Include="TypeMapping\AutoMapperAdapter.cs" />
+    <Compile Include="TypeMapping\IAutoMapper.cs" />
+    <Compile Include="TypeMapping\IAutoMapperTypeConfigurator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
