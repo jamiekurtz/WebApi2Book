@@ -55,6 +55,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
@@ -71,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionTransactionHelper.cs" />
+    <Compile Include="ErrorHandling\GlobalExceptionHandler.cs" />
+    <Compile Include="ErrorHandling\SimpleErrorResult.cs" />
+    <Compile Include="ErrorHandling\SimpleExceptionLogger.cs" />
     <Compile Include="IActionTransactionHelper.cs" />
     <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="NamespaceHttpControllerSelector.cs" />
@@ -94,6 +98,7 @@
       <Name>WebApi2Book.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

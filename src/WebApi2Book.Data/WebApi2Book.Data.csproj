@@ -43,6 +43,8 @@
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Exceptions\ChildObjectNotFoundException.cs" />
+    <Compile Include="Exceptions\RootObjectNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
