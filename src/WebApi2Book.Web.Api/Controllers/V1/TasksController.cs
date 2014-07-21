@@ -1,22 +1,27 @@
 ﻿using System.Net.Http;
 using System.Web.Http;
+using WebApi2Book.Common;
+using WebApi2Book.Web.Api.InquiryProcessing;
 using WebApi2Book.Web.Api.MaintenanceProcessing;
 using WebApi2Book.Web.Api.Models;
 using WebApi2Book.Web.Common;
 using WebApi2Book.Web.Common.Routing;
-using WebApi2Book.Common;
 
 namespace WebApi2Book.Web.Api.Controllers.V1
 {
     [ApiVersion1RoutePrefix("tasks")]
     [UnitOfWorkActionFilter]
+    [Authorize(Roles = Constants.RoleNames.JuniorWorker)]
     public class TasksController : ApiController
     {
         private readonly IAddTaskMaintenanceProcessor _addTaskMaintenanceProcessor;
+        private readonly ITaskByIdInquiryProcessor _taskByIdInquiryProcessor;
 
-        public TasksController(IAddTaskMaintenanceProcessor addTaskMaintenanceProcessor)
+        public TasksController(IAddTaskMaintenanceProcessor addTaskMaintenanceProcessor,
+            ITaskByIdInquiryProcessor taskByIdInquiryProcessor)
         {
             _addTaskMaintenanceProcessor = addTaskMaintenanceProcessor;
+            _taskByIdInquiryProcessor = taskByIdInquiryProcessor;
         }
 
         [Route("", Name = "AddTaskRoute")]
@@ -27,6 +32,13 @@ namespace WebApi2Book.Web.Api.Controllers.V1
             var task = _addTaskMaintenanceProcessor.AddTask(newTask);
             var result = new TaskCreatedActionResult(requestMessage, task);
             return result;
+        }
+
+        [Route("{id:long}", Name = "GetTaskRoute")]
+        public Task GetTask(long id)
+        {
+            var task = _taskByIdInquiryProcessor.GetTask(id);
+            return task;
         }
     }
 }
