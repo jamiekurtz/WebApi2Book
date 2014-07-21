@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="NamespaceHttpControllerSelector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\ApiVersion1RoutePrefixAttribute.cs" />
