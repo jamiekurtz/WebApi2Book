@@ -30,6 +30,7 @@ namespace WebApi2Book.Web.Api.Controllers.V1
         [Route("{id:long}", Name = "UpdateTaskRoute")]
         [HttpPut]
         [HttpPatch]
+        [ValidateTaskUpdateRequest]
         [Authorize(Roles = Constants.RoleNames.SeniorWorker)]
         public Task UpdateTask(long id, [FromBody] object updatedTask)
         {
