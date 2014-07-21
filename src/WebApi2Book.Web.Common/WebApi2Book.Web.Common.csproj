@@ -89,6 +89,7 @@
     <Compile Include="Security\UserSession.cs" />
     <Compile Include="SimpleTraceWriter.cs" />
     <Compile Include="UnitOfWorkActionFilterAttribute.cs" />
+    <Compile Include="Validation\ValidateModelAttribute.cs" />
     <Compile Include="WebContainerManager.cs" />
   </ItemGroup>
   <ItemGroup>
