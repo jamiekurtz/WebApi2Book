@@ -134,6 +134,9 @@
     <Compile Include="MaintenanceProcessing\LocationLinkCalculator.cs" />
     <Compile Include="MaintenanceProcessing\TaskCreatedActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\BasicAuthenticationMessageHandler.cs" />
+    <Compile Include="Security\BasicSecurityService.cs" />
+    <Compile Include="Security\IBasicSecurityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
