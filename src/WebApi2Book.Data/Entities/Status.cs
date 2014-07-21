@@ -1,6 +1,6 @@
 ﻿namespace WebApi2Book.Data.Entities
 {
-    public class Status
+    public class Status : IVersionedEntity
     {
         public virtual long StatusId { get; set; }
         public virtual string Name { get; set; }
