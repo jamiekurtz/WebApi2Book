@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Http.ExceptionHandling;
 using WebApi2Book.Data.Exceptions;
+using WebApi2Book.Common;
+
 namespace WebApi2Book.Web.Common.ErrorHandling
 {
     public class GlobalExceptionHandler : ExceptionHandler
@@ -28,6 +30,14 @@ namespace WebApi2Book.Web.Common.ErrorHandling
                 exception.Message);
                 return;
             }
+
+            if (exception is BusinessRuleViolationException)
+            {
+                context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.PaymentRequired,
+                exception.Message);
+                return;
+            }
+
             context.Result = new SimpleErrorResult(context.Request, HttpStatusCode.InternalServerError,
             exception.Message);
         }
