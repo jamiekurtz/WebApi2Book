@@ -1,0 +1,20 @@
+﻿<h2>Tasks Viewer</h2>
+<p>&nbsp;</p>
+
+<p>
+    <button class="btn btn-primary" 
+            data-bind="click: refreshTasks">Refresh task list</button>
+</p>
+
+<p>
+    <pre data-bind="text: statusMessage"
+        style="width: 1000px; height: 400px; overflow-x: scroll"></pre>
+</p>
+
+<script>
+    $(function () {
+        var viewModel = new indexViewModel();
+        ko.applyBindings(viewModel);
+    });
+</script>
+

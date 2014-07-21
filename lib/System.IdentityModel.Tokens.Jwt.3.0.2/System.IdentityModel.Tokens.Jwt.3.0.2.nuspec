@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.IdentityModel.Tokens.Jwt</id>
+    <version>3.0.2</version>
+    <title>JSON Web Token Handler For the Microsoft .Net Framework 4.5</title>
+    <authors>Microsoft Open Technologies,  Inc.</authors>
+    <owners>Microsoft Open Technologies,  Inc.</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/aspnetcomponent_rtw_enu.htm</licenseUrl>
+    <projectUrl>http://go.microsoft.com/fwlink/?LinkId=272508</projectUrl>
+    <iconUrl>https://az213233.vo.msecnd.net/Content/3.15.00298.14.140128-1706/ActiveDirectory/Images/QuickStartBannerGraphic.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This package provides an assembly containing classes which extend the .NET Framework 4.5 with the necessary logic to process the JSON Web Token (JWT) format. That includes validating, parsing and generating JWT tokens; those capabilities can be applied both within the Windows Identity Foundation token processing pipeline and standalone, without any dependency on WIF’s configuration.</description>
+    <summary>This package provides an assembly containing classes which extend the .NET Framework 4.5 with the necessary logic to process the JSON Web Token (JWT) format. That includes validating, parsing and generating JWT tokens; those capabilities can be applied both within the Windows Identity Foundation token processing pipeline and standalone, without any dependency on WIF’s configuration.</summary>
+    <copyright>© Microsoft Corporation. All rights reserved</copyright>
+    <language>en-US</language>
+    <tags>JWT JSON Web Token WIF Windows Identity Foundation OAuth OAuth2 Bearer TokenHandler Azure Active Directory Claims Identity Authentication</tags>
+  </metadata>
+</package>

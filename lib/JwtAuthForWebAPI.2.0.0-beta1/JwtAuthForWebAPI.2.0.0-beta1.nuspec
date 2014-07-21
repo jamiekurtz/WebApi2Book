@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>JwtAuthForWebAPI</id>
+    <version>2.0.0-beta1</version>
+    <title>Jamie Kurtz's JSON Web Token (JWT) Authentication for Web API</title>
+    <authors>Jamie Kurtz</authors>
+    <owners>Jamie Kurtz</owners>
+    <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
+    <projectUrl>https://github.com/jamiekurtz/JwtAuthForWebAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides easy implementation for JWT-based HTTP authentication in an ASP.NET Web API project.</description>
+    <releaseNotes>Nuget-deployed library for securing your ASP.NET Web API service with JSON Web Tokens (JWT).
+
+      This library is essentially a DelegatingHandler that creates a new ClaimsPrincipal based on the incoming token and assigns it to the current thread. As such, you *must* secure your controllers and/or their actions with the `[Authorize]` attribute - per standard ASP.NET authorization practices. In other words, the handler doesn't actually prevent unauthorized access to your site - that's what the `[Authorize]` attribute is for. 
+      
+      Configure your ASP.NET Web API site with this library by putting the following code (or similar) in your WebApiConfig.Register() method:
+
+      var builder = new SecurityTokenBuilder();
+      var jwtHandler = new JwtAuthenticationMessageHandler
+      {
+          AllowedAudience = "http://www.example.com",
+          Issuer = "corp",
+          SigningToken = builder.CreateFromCertificate("CN=JwtAuthForWebAPI Example")
+      };
+
+      config.MessageHandlers.Add(jwtHandler);
+      
+      
+      Please see the project site for more details.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>REST ASP.NET WebAPI JSON Web Token JWT Authentication</tags>
+    <dependencies>
+      <dependency id="log4net" version="2.0.2" />
+      <dependency id="System.IdentityModel.Tokens.Jwt" version="3.0.2" />
+    </dependencies>
+  </metadata>
+</package>

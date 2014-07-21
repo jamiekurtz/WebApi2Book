@@ -1,0 +1,18 @@
+﻿@model WebApi2BookSPA.Models.LoginModel
+
+<h2>Login</h2>
+
+@using (@Html.BeginForm("Login", "Login", FormMethod.Post, new {role = "form"}))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserId)
+        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Role)
+        @Html.TextBoxFor(m => m.Role, new {@class = "form-control"})
+    </div>
+    
+    <button type="submit" class="btn-primary">Login</button>
+}

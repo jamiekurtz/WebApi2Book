@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WebApi2Book.Web.Api.Models.Task">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <Members>
+      <Field Name="_links" Hidden="true" />
+      <Method Name="AddLink" Hidden="true" />
+      <Property Name="Location" Hidden="true" />
+      <Method Name="ShouldSerializeLocation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAECAAQACAABIIQAAAAAAgAAAAACgAAAEAAAAA=</HashCode>
+      <FileName>Task.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Status" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Assignees" />
+      <Property Name="Links" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebApi2Book.Web.Api.Models.User">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="_links" Hidden="true" />
+      <Method Name="AddLink" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAEAAAAAAAAAIBQAAAAgAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Links" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebApi2Book.Web.Api.Models.Status">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="_links" Hidden="true" />
+      <Method Name="AddLink" Hidden="true" />
+      <Method Name="ShouldSerializeLocation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAAAQAAAABBIAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Status.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Links" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WebApi2Book.Web.Api.Models.Link">
+    <Position X="6.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAgAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Link.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
