@@ -23,6 +23,7 @@ using WebApi2Book.Web.Common;
 using WebApi2Book.Web.Common.Security;
 using WebApi2Book.Web.Api.InquiryProcessing;
 using WebApi2Book.Web.Api.LinkServices;
+using WebApi2Book.Web.Api.Controllers.V1;
 
 namespace WebApi2Book.Web.Api
 {
@@ -60,6 +61,7 @@ namespace WebApi2Book.Web.Api
             container.Bind<ICommonLinkService>().To<CommonLinkService>().InRequestScope();
             container.Bind<IUserLinkService>().To<UserLinkService>().InRequestScope();
             container.Bind<ITaskLinkService>().To<TaskLinkService>().InRequestScope();
+            container.Bind<ITasksControllerDependencyBlock>().To<TasksControllerDependencyBlock>().InRequestScope();
         }
 
         private void ConfigureLog4net(IKernel container)

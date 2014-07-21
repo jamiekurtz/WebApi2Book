@@ -131,6 +131,8 @@
     <Compile Include="AutoMappingConfiguration\TaskEntityToTaskAutoMapperTypeConfigurator.cs" />
     <Compile Include="AutoMappingConfiguration\UserEntityToUserAutoMapperTypeConfigurator.cs" />
     <Compile Include="AutoMappingConfiguration\UserToUserEntityAutoMapperTypeConfigurator.cs" />
+    <Compile Include="Controllers\V1\ITasksControllerDependencyBlock.cs" />
+    <Compile Include="Controllers\V1\TasksControllerDependencyBlock.cs" />
     <Compile Include="Controllers\V1\TaskUsersController.cs" />
     <Compile Include="Controllers\V1\TasksController.cs" />
     <Compile Include="Controllers\V1\TaskWorkflowController.cs" />

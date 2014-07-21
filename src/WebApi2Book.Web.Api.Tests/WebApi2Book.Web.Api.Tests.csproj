@@ -68,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\V1\TasksControllerDependencyBlockMock.cs" />
+    <Compile Include="Controllers\V1\TasksControllerTest.cs" />
+    <Compile Include="HttpRequestMessageFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

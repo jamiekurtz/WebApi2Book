@@ -21,17 +21,15 @@ namespace WebApi2Book.Web.Api.Controllers.V1
         private readonly ITaskByIdInquiryProcessor _taskByIdInquiryProcessor;
         private readonly IUpdateTaskMaintenanceProcessor _updateTaskMaintenanceProcessor;
 
-        public TasksController(IAddTaskMaintenanceProcessor addTaskMaintenanceProcessor,
-            ITaskByIdInquiryProcessor taskByIdInquiryProcessor,
-            IUpdateTaskMaintenanceProcessor updateTaskMaintenanceProcessor,
-            IPagedDataRequestFactory pagedDataRequestFactory,
-            IAllTasksInquiryProcessor allTasksInquiryProcessor)
+        public TasksController(ITasksControllerDependencyBlock tasksControllerDependencyBlock)
         {
-            _addTaskMaintenanceProcessor = addTaskMaintenanceProcessor;
-            _taskByIdInquiryProcessor = taskByIdInquiryProcessor;
-            _updateTaskMaintenanceProcessor = updateTaskMaintenanceProcessor;
-            _pagedDataRequestFactory = pagedDataRequestFactory;
-            _allTasksInquiryProcessor = allTasksInquiryProcessor;
+            _addTaskMaintenanceProcessor =
+                tasksControllerDependencyBlock.AddTaskMaintenanceProcessor;
+            _allTasksInquiryProcessor = tasksControllerDependencyBlock.AllTasksInquiryProcessor;
+            _pagedDataRequestFactory = tasksControllerDependencyBlock.PagedDataRequestFactory;
+            _taskByIdInquiryProcessor = tasksControllerDependencyBlock.TaskByIdInquiryProcessor;
+            _updateTaskMaintenanceProcessor =
+                tasksControllerDependencyBlock.UpdateTaskMaintenanceProcessor;
         }
 
         [Route("{id:long}", Name = "UpdateTaskRoute")]
