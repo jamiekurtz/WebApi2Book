@@ -14,6 +14,8 @@ namespace WebApi2Book.Web.Api
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Formatters.XmlFormatter.UseXmlSerializer = true;
+
             var constraintsResolver = new DefaultInlineConstraintResolver();
             constraintsResolver.ConstraintMap.Add("apiVersionConstraint", typeof
             (ApiVersionConstraint));
