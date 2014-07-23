@@ -3,7 +3,7 @@ WebApi2Book
 
 This repository contains the example source code that accompanies *ASP.NET Web API 2: Building a REST Service from Start to Finish* (ISBN-13: 978-1484201107).
 
-The book is available from Amazon: [http://www.amazon.com/gp/product/1484201108/ref=s9_simh_gw_p14_d4_i1?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=center-2&pf_rd_r=1C2SG78VC0S7WHHJBKMA&pf_rd_t=101&pf_rd_p=1688200382&pf_rd_i=507846](http://www.amazon.com/gp/product/1484201108/ref=s9_simh_gw_p14_d4_i1?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=center-2&pf_rd_r=1C2SG78VC0S7WHHJBKMA&pf_rd_t=101&pf_rd_p=1688200382&pf_rd_i=507846 "ASP.NET Web API 2 on Amazon").
+The book is available from Amazon: [http://www.amazon.com/gp/product/1484201108](http://www.amazon.com/gp/product/1484201108 "ASP.NET Web API 2 on Amazon").
 
 The repository contains chapter-specific branches so that you can follow along with the implementation described in the book. The "completed" branch contains the finished solution, including the ASMX-based service and client discussed in Chapter 8.
 
