@@ -19,7 +19,7 @@ If you examine the client application code you'll notice that the same proxy cla
 
 
 ## Note About Token in the SPA Project
-A mistake was made in the book in the in Chapter 9 (page 27) regarding the WebApi2BookSPA project. The book talks about submitting the user's security token to the jQuery ajax() call 
+A mistake was made in the book in Chapter 9 (page 27) regarding the WebApi2BookSPA project. The book talks about submitting the user's security token to the jQuery ajax() call 
 by using JavaScript to pull the token from a browser cookie - adding it to the request's Authorization header. Unfortunately, this small example was not secure. It 
 is considered insecure to allow JavaScript code access to authentication cookies - e.g. a user's token. 
 
