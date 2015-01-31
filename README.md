@@ -16,3 +16,14 @@ Fiddler session files are available in the doc directory. Please be sure to modi
 3. Use the application to invoke methods against the legacy SOAP-based service and against the Web.API REST service.
 
 If you examine the client application code you'll notice that the same proxy class is being used for both services (see the `MainWindow.GetServiceClient` method). The only difference is the endpoint being used for the particular service.
+
+
+## Note About Token in the SPA Project
+A mistake was made in the book in the in Chapter 9 (page 27) regarding the WebApi2BookSPA project. The book talks about submitting the user's security token to the jQuery ajax() call 
+by using JavaScript to pull the token from a browser cookie - adding it to the request's Authorization header. Unfortunately, this small example was not secure. It 
+is considered insecure to allow JavaScript code access to authentication cookies - e.g. a user's token. 
+
+As such, a newer JwtAuthForWebAPI has been applied that allows the service to pull the token from a browser cookie using the HttpRequest object - as opposed to looking for it only in the Authorization header. This in turn allows 
+the client JavaScript (found in the viewModels.js file) to avoid manually grabbing the UserToken cookie and submitting in the request header of the ajax() call. If you 
+have built your own SPA code using the approach detailed in the book, we strongly recommend that you update your code accordingly.
+

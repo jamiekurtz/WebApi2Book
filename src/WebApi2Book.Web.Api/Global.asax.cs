@@ -54,7 +54,8 @@ namespace WebApi2Book.Web.Api
                 {
                     AllowedAudience = reader.AllowedAudience,
                     Issuer = reader.Issuer,
-                    SigningToken = builder.CreateFromKey(reader.SymmetricKey)
+                    SigningToken = builder.CreateFromKey(reader.SymmetricKey),
+                    CookieNameToCheckForToken = reader.CookieNameToCheckForToken
                 });
         }
 

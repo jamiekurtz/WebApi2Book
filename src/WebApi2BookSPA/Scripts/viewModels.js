@@ -7,13 +7,11 @@ var indexViewModel = function() {
     self.statusMessage = ko.observable("(Click Refresh button to load tasks)");
 
     self.refreshTasks = function() {
-        var token = $.cookie('UserToken');
-
         $.ajax({
             type: 'GET',
             url: taskManagementUrl + '/tasks',
-            headers: {
-                Authorization : "Bearer " + token
+            xhrFields: {
+                withCredentials: true
             },
             contentType: 'application/json;charset=utf8',
             success: self.onRefreshSuccess,

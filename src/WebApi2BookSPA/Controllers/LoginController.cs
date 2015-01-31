@@ -31,7 +31,7 @@ namespace WebApi2BookSPA.Controllers
         private void SetAuthCookie(string userId, string role)
         {
             var token = CreateJwt(userId, role);
-            var cookie = new HttpCookie("UserToken", token) {HttpOnly = false};
+            var cookie = new HttpCookie("UserToken", token) {HttpOnly = true};
             Response.SetCookie(cookie);
         }
 

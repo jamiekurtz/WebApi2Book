@@ -18,7 +18,7 @@ namespace WebApi2Book.Web.Api.Controllers.V1
     [ApiVersion1RoutePrefix("tasks")]
     [UnitOfWorkActionFilter]
     [Authorize(Roles = Constants.RoleNames.JuniorWorker)]
-    [EnableCors("http://localhost:52976", "*", "*")]
+    [EnableCors("http://localhost:52976", "*", "*", SupportsCredentials = true)]
     public class TasksController : ApiController
     {
         private readonly IAddTaskMaintenanceProcessor _addTaskMaintenanceProcessor;
