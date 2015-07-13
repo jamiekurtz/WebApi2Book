@@ -1,7 +1,6 @@
 // TaskMap.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
-using FluentNHibernate.Mapping;
 using WebApi2Book.Data.Entities;
 
 namespace WebApi2Book.Data.SqlServer.Mapping
@@ -10,21 +9,24 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public TaskMap()
         {
-            Id(x => x.TaskId);
-            Map(x => x.Subject).Not.Nullable();
-            Map(x => x.StartDate).Nullable();
-            Map(x => x.DueDate).Nullable();
-            Map(x => x.CompletedDate).Nullable();
-            Map(x => x.CreatedDate).Not.Nullable();
+            HasKey(x => x.TaskId);
+            Property(x => x.Subject).IsRequired();
+            Property(x => x.StartDate).IsOptional();
+            Property(x => x.DueDate).IsOptional();
+            Property(x => x.CompletedDate).IsOptional();
+            Property(x => x.CreatedDate).IsRequired();
 
-            References(x => x.Status, "StatusId");
-            References(x => x.CreatedBy, "CreatedUserId");
+            HasRequired(x => x.Status);
+            HasRequired(x => x.CreatedBy);
 
-            HasManyToMany(x => x.Users)
-                .Access.ReadOnlyPropertyThroughCamelCaseField(Prefix.Underscore)
-                .Table("TaskUser")
-                .ParentKeyColumn("TaskId")
-                .ChildKeyColumn("UserId");
+            HasMany(x => x.Users)
+                .WithMany(x => x.Tasks)
+                .Map(x =>
+                {
+                    x.ToTable("TaskUser");
+                    x.MapLeftKey("TaskId");
+                    x.MapRightKey("UserId");
+                });
         }
     }
 }

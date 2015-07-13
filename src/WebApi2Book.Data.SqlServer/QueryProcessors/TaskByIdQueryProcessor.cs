@@ -1,7 +1,6 @@
 ﻿// TaskByIdQueryProcessor.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
-using NHibernate;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.QueryProcessors;
 
@@ -9,16 +8,16 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class TaskByIdQueryProcessor : ITaskByIdQueryProcessor
     {
-        private readonly ISession _session;
+        private readonly TasksDbContext _dbContext;
 
-        public TaskByIdQueryProcessor(ISession session)
+        public TaskByIdQueryProcessor(TasksDbContext dbContext)
         {
-            _session = session;
+            _dbContext = dbContext;
         }
 
         public Task GetTask(long taskId)
         {
-            var task = _session.Get<Task>(taskId);
+            var task = _dbContext.Set<Task>().Find(taskId);
             return task;
         }
     }

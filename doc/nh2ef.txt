@@ -1,0 +1,17 @@
+Install-Package EntityFramework -Version 6.1.3
+
+Have to put Tasks property on Users (even though I didn't want to) to support the Many2Many
+
+VersionedClassMap<T> -> EntityTypeConfiguration<T>
+
+Change _session.QueryOver<T> to _dbContext.Set<T>
+
+ToRowCount() to Count()   // test this!!
+
+Set<T>.Find() to search by key, instead of Get<T>()
+
+Used Set<T> instead of property getters
+
+
+Make sure NH-related packages are removed from ./lib folder
+

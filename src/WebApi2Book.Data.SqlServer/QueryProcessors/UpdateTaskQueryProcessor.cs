@@ -1,9 +1,8 @@
 ﻿// UpdateTaskQueryProcessor.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Collections.Generic;
 using System.Linq;
-using NHibernate;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.Exceptions;
 using WebApi2Book.Data.QueryProcessors;
@@ -13,11 +12,11 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class UpdateTaskQueryProcessor : IUpdateTaskQueryProcessor
     {
-        private readonly ISession _session;
+        private readonly TasksDbContext _dbContext;
 
-        public UpdateTaskQueryProcessor(ISession session)
+        public UpdateTaskQueryProcessor(TasksDbContext dbContext)
         {
-            _session = session;
+            _dbContext = dbContext;
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
                     .SetValue(task, propertyValuePair.Value);
             }
 
-            _session.SaveOrUpdate(task);
+            _dbContext.SaveChanges();
 
             return task;
         }
@@ -50,7 +49,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
             UpdateTaskUsers(task, userIds, false);
 
-            _session.SaveOrUpdate(task);
+            _dbContext.SaveChanges();
 
             return task;
         }
@@ -61,7 +60,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
             UpdateTaskUsers(task, null, false);
 
-            _session.SaveOrUpdate(task);
+            _dbContext.SaveChanges();
 
             return task;
         }
@@ -72,7 +71,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
             UpdateTaskUsers(task, new[] {userId}, true);
 
-            _session.SaveOrUpdate(task);
+            _dbContext.SaveChanges();
 
             return task;
         }
@@ -85,7 +84,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
             if (user != null)
             {
                 task.Users.Remove(user);
-                _session.SaveOrUpdate(task);
+                _dbContext.SaveChanges();
             }
 
             return task;
@@ -93,7 +92,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
         public virtual Task GetValidTask(long taskId)
         {
-            var task = _session.Get<Task>(taskId);
+            var task = _dbContext.Set<Task>().Find(taskId);
             if (task == null)
             {
                 throw new RootObjectNotFoundException("Task not found");
@@ -104,7 +103,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
         public virtual User GetValidUser(long userId)
         {
-            var user = _session.Get<User>(userId);
+            var user = _dbContext.Set<User>().Find(userId);
             if (user == null)
             {
                 throw new ChildObjectNotFoundException("User not found");

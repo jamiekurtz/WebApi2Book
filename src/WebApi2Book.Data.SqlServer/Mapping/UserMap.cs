@@ -1,5 +1,5 @@
 // UserMap.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using WebApi2Book.Data.Entities;
 
@@ -9,10 +9,10 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public UserMap()
         {
-            Id(x => x.UserId);
-            Map(x => x.Firstname).Not.Nullable();
-            Map(x => x.Lastname).Not.Nullable();
-            Map(x => x.Username).Not.Nullable();
+            HasKey(x => x.UserId);
+            Property(x => x.Firstname).IsRequired();
+            Property(x => x.Lastname).IsRequired();
+            Property(x => x.Username).IsRequired();
         }
     }
 }

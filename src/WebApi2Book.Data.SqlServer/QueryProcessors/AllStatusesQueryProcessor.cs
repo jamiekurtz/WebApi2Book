@@ -1,8 +1,8 @@
 ﻿// AllStatusesQueryProcessor.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Collections.Generic;
-using NHibernate;
+using System.Linq;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.QueryProcessors;
 
@@ -10,16 +10,16 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class AllStatusesQueryProcessor : IAllStatusesQueryProcessor
     {
-        private readonly ISession _session;
+        private readonly TasksDbContext _dbContext;
 
-        public AllStatusesQueryProcessor(ISession session)
+        public AllStatusesQueryProcessor(TasksDbContext dbContext)
         {
-            _session = session;
+            _dbContext = dbContext;
         }
 
         public IEnumerable<Status> GetStatuses()
         {
-            var statuses = _session.QueryOver<Status>().List();
+            var statuses = _dbContext.Set<Status>().ToList();
             return statuses;
         }
     }

@@ -1,5 +1,5 @@
 // StatusMap.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using WebApi2Book.Data.Entities;
 
@@ -9,9 +9,9 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public StatusMap()
         {
-            Id(x => x.StatusId);
-            Map(x => x.Name).Not.Nullable();
-            Map(x => x.Ordinal).Not.Nullable();
+            HasKey(x => x.StatusId);
+            Property(x => x.Name).IsRequired();
+            Property(x => x.Ordinal).IsRequired();
         }
     }
 }

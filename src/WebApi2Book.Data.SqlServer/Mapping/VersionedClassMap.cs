@@ -1,20 +1,18 @@
 // VersionedClassMap.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
-using FluentNHibernate.Mapping;
+using System.Data.Entity.ModelConfiguration;
 using WebApi2Book.Data.Entities;
 
 namespace WebApi2Book.Data.SqlServer.Mapping
 {
-    public abstract class VersionedClassMap<T> : ClassMap<T> where T : IVersionedEntity
+    public abstract class VersionedClassMap<T> : EntityTypeConfiguration<T> where T : class, IVersionedEntity
     {
         protected VersionedClassMap()
         {
-            Version(x => x.Version)
-                .Column("ts")
-                .CustomSqlType("Rowversion")
-                .Generated.Always()
-                .UnsavedValue("null");
+            Property(x => x.Version)
+                .HasColumnName("ts")
+                .IsRowVersion();
         }
     }
 }

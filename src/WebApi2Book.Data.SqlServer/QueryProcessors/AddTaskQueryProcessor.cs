@@ -1,8 +1,7 @@
 ﻿// AddTaskQueryProcessor.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
-using NHibernate;
-using NHibernate.Util;
+using System.Linq;
 using WebApi2Book.Common;
 using WebApi2Book.Common.Security;
 using WebApi2Book.Data.Entities;
@@ -14,29 +13,28 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
     public class AddTaskQueryProcessor : IAddTaskQueryProcessor
     {
         private readonly IDateTime _dateTime;
-        private readonly ISession _session;
+        private readonly TasksDbContext _dbContext;
         private readonly IUserSession _userSession;
 
-        public AddTaskQueryProcessor(ISession session, IUserSession userSession, IDateTime dateTime)
+        public AddTaskQueryProcessor(TasksDbContext dbContext, IUserSession userSession, IDateTime dateTime)
         {
-            _session = session;
+            _dbContext = dbContext;
             _userSession = userSession;
             _dateTime = dateTime;
         }
 
         public void AddTask(Task task)
         {
+            task.Status = _dbContext.Set<Status>().SingleOrDefault(x => x.Name == "Not Started");
             task.CreatedDate = _dateTime.UtcNow;
-            task.Status = _session.QueryOver<Status>().Where(x => x.Name == "Not Started").SingleOrDefault();
-            task.CreatedBy =
-                _session.QueryOver<User>().Where(x => x.Username == _userSession.Username).SingleOrDefault();
+            task.CreatedBy = _dbContext.Set<User>().SingleOrDefault(x => x.Username == _userSession.Username);
 
             if (task.Users != null && task.Users.Any())
             {
                 for (var i = 0; i < task.Users.Count; ++i)
                 {
                     var user = task.Users[i];
-                    var persistedUser = _session.Get<User>(user.UserId);
+                    var persistedUser = _dbContext.Set<User>().Find(user.UserId);
                     if (persistedUser == null)
                     {
                         throw new ChildObjectNotFoundException("User not found");
@@ -45,7 +43,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
                 }
             }
 
-            _session.SaveOrUpdate(task);
+            _dbContext.SaveChanges();
         }
     }
 }
