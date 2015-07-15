@@ -12,7 +12,8 @@ namespace WebApi2Book.Web.Api.AutoMappingConfiguration
         public void Configure()
         {
             Mapper.CreateMap<User, Data.Entities.User>()
-                .ForMember(opt => opt.Version, x => x.Ignore());
+                .ForMember(opt => opt.Version, x => x.Ignore())
+                .ForMember(opt => opt.Tasks, x => x.Ignore());
         }
     }
 }

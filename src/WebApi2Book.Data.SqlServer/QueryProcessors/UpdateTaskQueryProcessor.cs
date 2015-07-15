@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using EFCommonContext;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.Exceptions;
 using WebApi2Book.Data.QueryProcessors;
@@ -12,9 +13,9 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class UpdateTaskQueryProcessor : IUpdateTaskQueryProcessor
     {
-        private readonly TasksDbContext _dbContext;
+        private readonly IDbContext _dbContext;
 
-        public UpdateTaskQueryProcessor(TasksDbContext dbContext)
+        public UpdateTaskQueryProcessor(IDbContext dbContext)
         {
             _dbContext = dbContext;
         }

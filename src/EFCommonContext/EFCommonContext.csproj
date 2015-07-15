@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36CAC611-2F82-456D-923D-EF959AEB5BBA}</ProjectGuid>
+    <ProjectGuid>{C5BD108C-5475-42B1-B295-11578B096DAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApi2Book.Data.SqlServer</RootNamespace>
-    <AssemblyName>WebApi2Book.Data.SqlServer</AssemblyName>
+    <RootNamespace>EFCommonContext</RootNamespace>
+    <AssemblyName>EFCommonContext</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +28,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -41,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,40 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mapping\StatusMap.cs" />
-    <Compile Include="Mapping\TaskMap.cs" />
-    <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="Mapping\VersionedClassMap.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryProcessors\AddTaskQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\AllStatusesQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\AllTasksQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\AllUsersQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\DeleteTaskQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\TaskByIdQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\UpdateTaskQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\UpdateTaskStatusQueryProcessor.cs" />
-    <Compile Include="QueryProcessors\UserByIdQueryProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EFCommonContext\EFCommonContext.csproj">
-      <Project>{c5bd108c-5475-42b1-b295-11578b096daa}</Project>
-      <Name>EFCommonContext</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebApi2Book.Common\WebApi2Book.Common.csproj">
-      <Project>{9E589099-F064-47C6-9D14-3A54ADA6C8E6}</Project>
-      <Name>WebApi2Book.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebApi2Book.Data\WebApi2Book.Data.csproj">
-      <Project>{B4F56983-5B1C-42C7-B872-AE3A5545C02D}</Project>
-      <Name>WebApi2Book.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

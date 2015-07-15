@@ -15,3 +15,7 @@ Used Set<T> instead of property getters
 
 Make sure NH-related packages are removed from ./lib folder
 
+Changed:
+- ActionTransactionHelper
+- Added IHttpContext and HttpContextAdapter
+- NinjectConfigurator

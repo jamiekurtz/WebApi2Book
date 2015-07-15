@@ -2,6 +2,7 @@
 // Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Linq;
+using EFCommonContext;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.QueryProcessors;
 
@@ -9,9 +10,9 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class AllTasksQueryProcessor : IAllTasksQueryProcessor
     {
-        private readonly TasksDbContext _dbContext;
+        private readonly IDbContext _dbContext;
 
-        public AllTasksQueryProcessor(TasksDbContext dbContext)
+        public AllTasksQueryProcessor(IDbContext dbContext)
         {
             _dbContext = dbContext;
         }

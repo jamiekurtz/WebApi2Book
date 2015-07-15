@@ -1,19 +1,18 @@
 // ActionTransactionHelper.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Web.Http.Filters;
-using NHibernate;
-using NHibernate.Context;
+using EFCommonContext;
 
 namespace WebApi2Book.Web.Common
 {
     public class ActionTransactionHelper : IActionTransactionHelper
     {
-        private readonly ISessionFactory _sessionFactory;
+        private readonly IWebContextFactory _contextFactory;
 
-        public ActionTransactionHelper(ISessionFactory sessionFactory)
+        public ActionTransactionHelper(IWebContextFactory contextFactory)
         {
-            _sessionFactory = sessionFactory;
+            _contextFactory = contextFactory;
         }
 
         public bool TransactionHandled { get; private set; }
@@ -22,32 +21,32 @@ namespace WebApi2Book.Web.Common
 
         public void BeginTransaction()
         {
-            if (!CurrentSessionContext.HasBind(_sessionFactory)) return;
+            if (!_contextFactory.ContextExists) return;
 
-            var session = _sessionFactory.GetCurrentSession();
-            if (session != null)
+            var context = _contextFactory.GetCurrentContext();
+            if (context != null)
             {
-                session.BeginTransaction();
+                context.Database.BeginTransaction();
             }
         }
 
         public void EndTransaction(HttpActionExecutedContext filterContext)
         {
-            if (!CurrentSessionContext.HasBind(_sessionFactory)) return;
+            if (!_contextFactory.ContextExists) return;
 
-            var session = _sessionFactory.GetCurrentSession();
+            var context = _contextFactory.GetCurrentContext();
+            if (context == null) return;
 
-            if (session == null) return;
-            if (!session.Transaction.IsActive) return;
+            if (context.Database.CurrentTransaction == null) return;
 
             if (filterContext.Exception == null)
             {
-                session.Flush();
-                session.Transaction.Commit();
+                context.SaveChanges();
+                context.Database.CurrentTransaction.Commit();
             }
             else
             {
-                session.Transaction.Rollback();
+                context.Database.CurrentTransaction.Rollback();
             }
 
             TransactionHandled = true;
@@ -55,12 +54,13 @@ namespace WebApi2Book.Web.Common
 
         public void CloseSession()
         {
-            if (!CurrentSessionContext.HasBind(_sessionFactory)) return;
+            if (!_contextFactory.ContextExists) return;
 
-            var session = _sessionFactory.GetCurrentSession();
-            session.Close();
-            session.Dispose();
-            CurrentSessionContext.Unbind(_sessionFactory);
+            var context = _contextFactory.GetCurrentContext();
+            if (context == null) return;
+            context.Database.Connection.Close();
+            context.Dispose();
+            _contextFactory.Reset();
             SessionClosed = true;
         }
     }

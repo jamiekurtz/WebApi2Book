@@ -13,6 +13,7 @@ namespace WebApi2Book.Data.SqlServer.Mapping
             Property(x => x.Firstname).IsRequired();
             Property(x => x.Lastname).IsRequired();
             Property(x => x.Username).IsRequired();
+            Ignore(x => x.Tasks);
         }
     }
 }

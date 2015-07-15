@@ -1,12 +1,13 @@
 ﻿// BasicSecurityService.cs
-// Copyright Jamie Kurtz, Brian Wortman 2014.
+// Copyright Jamie Kurtz, Brian Wortman 2015.
 
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
+using EFCommonContext;
 using log4net;
-using NHibernate;
 using WebApi2Book.Common;
 using WebApi2Book.Common.Logging;
 using WebApi2Book.Data.Entities;
@@ -23,9 +24,9 @@ namespace WebApi2Book.Web.Api.Security
             _log = logManager.GetLog(typeof (BasicSecurityService));
         }
 
-        public virtual ISession Session
+        public virtual IDbContext DbContext
         {
-            get { return WebContainerManager.Get<ISession>(); }
+            get { return WebContainerManager.Get<IDbContext>(); }
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace WebApi2Book.Web.Api.Security
         {
             username = username.ToLowerInvariant();
             return
-                Session.QueryOver<User>().Where(x => x.Username == username).SingleOrDefault();
+                DbContext.Set<User>().SingleOrDefault(x => x.Username == username);
         }
     }
 }

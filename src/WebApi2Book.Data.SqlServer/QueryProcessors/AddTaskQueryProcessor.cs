@@ -2,6 +2,7 @@
 // Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Linq;
+using EFCommonContext;
 using WebApi2Book.Common;
 using WebApi2Book.Common.Security;
 using WebApi2Book.Data.Entities;
@@ -13,10 +14,10 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
     public class AddTaskQueryProcessor : IAddTaskQueryProcessor
     {
         private readonly IDateTime _dateTime;
-        private readonly TasksDbContext _dbContext;
+        private readonly IDbContext _dbContext;
         private readonly IUserSession _userSession;
 
-        public AddTaskQueryProcessor(TasksDbContext dbContext, IUserSession userSession, IDateTime dateTime)
+        public AddTaskQueryProcessor(IDbContext dbContext, IUserSession userSession, IDateTime dateTime)
         {
             _dbContext = dbContext;
             _userSession = userSession;

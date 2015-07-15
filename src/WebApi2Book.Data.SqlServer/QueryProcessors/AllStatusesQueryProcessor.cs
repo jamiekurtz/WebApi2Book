@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using EFCommonContext;
 using WebApi2Book.Data.Entities;
 using WebApi2Book.Data.QueryProcessors;
 
@@ -10,9 +11,9 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 {
     public class AllStatusesQueryProcessor : IAllStatusesQueryProcessor
     {
-        private readonly TasksDbContext _dbContext;
+        private readonly IDbContext _dbContext;
 
-        public AllStatusesQueryProcessor(TasksDbContext dbContext)
+        public AllStatusesQueryProcessor(IDbContext dbContext)
         {
             _dbContext = dbContext;
         }
