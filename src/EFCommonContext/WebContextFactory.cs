@@ -1,4 +1,4 @@
-﻿// Class1.cs
+﻿// WebContextFactory.cs
 // Copyright Jamie Kurtz, Brian Wortman 2015.
 
 using System.Data.Entity;
@@ -8,21 +8,13 @@ using System.Web;
 
 namespace EFCommonContext
 {
-    public interface IWebContextFactory
-    {
-        bool ContextExists { get; }
-        IDbContext GetCurrentContext();
-        IDbContext GetNewOrCurrentContext();
-        void Reset();
-    }
-
     public class WebContextFactory : IWebContextFactory
     {
         public const string DbContextCacheKey = "DbContext";
         private readonly DbCompiledModel _compiledModel;
         private readonly string _nameOrConnectionString;
 
-        internal WebContextFactory(string nameOrConnectionString, DbCompiledModel compiledModel)
+        private WebContextFactory(string nameOrConnectionString, DbCompiledModel compiledModel)
         {
             _nameOrConnectionString = nameOrConnectionString;
             _compiledModel = compiledModel;
@@ -62,32 +54,21 @@ namespace EFCommonContext
             return (IDbContext) HttpContext.Current.Items[DbContextCacheKey];
         }
 
-        public static WebContextFactory BuildFactory(string nameOrConnectionString, Assembly mappingAssembly)
+        public static WebContextFactory BuildFactory(
+            string nameOrConnectionString,
+            Assembly mappingAssembly,
+            string providerName,
+            string providerVersionHint
+            )
         {
             var modelBuilder = new DbModelBuilder();
             modelBuilder.Configurations.AddFromAssembly(mappingAssembly);
 
-            var providerInfo = new DbProviderInfo("System.Data.SqlClient", "2008");
+            var providerInfo = new DbProviderInfo(providerName, providerVersionHint);
             var model = modelBuilder.Build(providerInfo);
             var compiledModel = model.Compile();
 
             return new WebContextFactory(nameOrConnectionString, compiledModel);
         }
-    }
-
-    public class CommonDbContext : DbContext, IDbContext
-    {
-        internal CommonDbContext(string nameOrConnectionString, DbCompiledModel model)
-            : base(nameOrConnectionString, model)
-        {
-        }
-    }
-
-    public interface IDbContext
-    {
-        Database Database { get; }
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
-        int SaveChanges();
-        void Dispose();
     }
 }

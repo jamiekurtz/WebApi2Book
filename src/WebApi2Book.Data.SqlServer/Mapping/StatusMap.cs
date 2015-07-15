@@ -9,6 +9,7 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public StatusMap()
         {
+            ToTable("Status");
             HasKey(x => x.StatusId);
             Property(x => x.Name).IsRequired();
             Property(x => x.Ordinal).IsRequired();

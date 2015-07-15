@@ -25,7 +25,7 @@ namespace WebApi2Book.Data.SqlServer.QueryProcessors
 
             var startIndex = ResultsPagingUtility.CalculateStartIndex(requestInfo.PageNumber, requestInfo.PageSize);
 
-            var tasks = query.Skip(startIndex).Take(requestInfo.PageSize).ToList();
+            var tasks = query.OrderBy(x => x.TaskId).Skip(startIndex).Take(requestInfo.PageSize).ToList();
 
             var queryResult = new QueryResult<Task>(tasks, totalItemCount, requestInfo.PageSize);
 

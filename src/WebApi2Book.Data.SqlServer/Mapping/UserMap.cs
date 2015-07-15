@@ -9,6 +9,7 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public UserMap()
         {
+            ToTable("User");
             HasKey(x => x.UserId);
             Property(x => x.Firstname).IsRequired();
             Property(x => x.Lastname).IsRequired();

@@ -9,6 +9,7 @@ namespace WebApi2Book.Data.SqlServer.Mapping
     {
         public TaskMap()
         {
+            ToTable("Task");
             HasKey(x => x.TaskId);
             Property(x => x.Subject).IsRequired();
             Property(x => x.StartDate).IsOptional();
@@ -16,8 +17,8 @@ namespace WebApi2Book.Data.SqlServer.Mapping
             Property(x => x.CompletedDate).IsOptional();
             Property(x => x.CreatedDate).IsRequired();
 
-            HasRequired(x => x.Status);
-            HasRequired(x => x.CreatedBy);
+            HasRequired(x => x.Status).WithMany().Map(x => x.MapKey("StatusId"));
+            HasRequired(x => x.CreatedBy).WithMany().Map(x => x.MapKey("CreatedUserId"));
 
             HasMany(x => x.Users)
                 .WithMany(x => x.Tasks)

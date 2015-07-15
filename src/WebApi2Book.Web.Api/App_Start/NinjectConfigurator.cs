@@ -134,17 +134,11 @@ namespace WebApi2Book.Web.Api
 
         private void ConfigureEntityFramework(IKernel container)
         {
-            var contextFactory = WebContextFactory.BuildFactory("WebApi2BookDb", typeof (TaskMap).Assembly);
-
-            container.Bind<IDbContext>().ToMethod(CreateDbContext);
+            var contextFactory = WebContextFactory.BuildFactory("WebApi2BookDb", typeof(TaskMap).Assembly, "System.Data.SqlClient", "2012");
             container.Bind<IWebContextFactory>().ToConstant(contextFactory);
-            container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>().InRequestScope();
-        }
 
-        private IDbContext CreateDbContext(IContext context)
-        {
-            var contextFactory = context.Kernel.Get<IWebContextFactory>();
-            return contextFactory.GetNewOrCurrentContext();
+            container.Bind<IDbContext>().ToMethod(context => context.Kernel.Get<IWebContextFactory>().GetNewOrCurrentContext());
+            container.Bind<IActionTransactionHelper>().To<ActionTransactionHelper>().InRequestScope();
         }
 
         private void ConfigureDependenciesOnlyUsedForLegacyProcessing(IKernel container)
