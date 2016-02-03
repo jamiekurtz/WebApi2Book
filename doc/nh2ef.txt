@@ -19,3 +19,4 @@ Changed:
 - ActionTransactionHelper
 - Added IHttpContext and HttpContextAdapter
 - NinjectConfigurator
+- added CommonDbContext
